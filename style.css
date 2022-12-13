@@ -1,0 +1,157 @@
+/* import font(s) */
+@import url("https://fonts.googleapis.com/css?family=Rancho&effect=shadow-multiple");
+
+/* detail root variables
+--color-theme cascades to most html elements, and will be later updated in JavaScript
+*/
+:root {
+    --font: "Rancho", sans-serif;
+    --color-bg: #000b14;
+    --color-theme: #ffffff;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    height: 100vh;
+    background: var(--color-bg);
+    color: var(--color-theme);
+    font-family: var(--font);
+}
+
+.wrapper {
+    max-width: 1290px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.wheel-area {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* heading centered atop the page */
+h1 {
+    text-align: center;
+    margin: 1rem 0 0;
+    font-size: 3rem;
+    transition: all 0.25s ease-in-out;
+    position: absolute;
+    top: 0;
+}
+
+/* shown/hidden through an dedicated class */
+h1.isHidden {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-1rem) scale(0);
+}
+
+/* wheel positioned to the left of the page, and occupying 50% of whichever dimension is the biggest */
+svg#wheel {
+    width: 100%;
+    height: auto;
+}
+
+/* arrow positioned to the right of the wheel, and pointing at the very middle section */
+svg#pin {
+    width: calc(50% / 25);
+    height: calc(50% / 25);
+    fill: var(--color-theme);
+}
+
+/* instructions displayed on the right side, in a single column layout */
+.instructions {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: center;
+    padding: 1rem;
+}
+
+.instructions button {
+    margin-top: 1rem;
+    padding: 0.25rem 0.75rem;
+    font-size: 1.55rem;
+    font-family: inherit;
+    color: inherit;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 0 0 2px currentColor;
+    background: var(--color-bg);
+    /* transition for a simple hover and active state */
+    transition: all 0.5s ease-out;
+    color: var(--color-theme);
+}
+
+.instructions button:hover {
+    box-shadow: 0 0 0 1px var(--color-bg), 0 0 0 3px currentColor,
+        0 0 0 5px var(--color-bg), 0 0 0 7px currentColor;
+}
+
+.instructions button:active {
+    box-shadow: 0 0 0 2px currentColor, 0 0 0 4px var(--color-bg),
+        0 0 0 6px currentColor;
+    transform: scale(0.95) translateY(0.1rem);
+}
+
+/* cursor customized to grab, and not allowed when the wheel is spinning (class added in JS) */
+.instructions button,
+svg#pin {
+    cursor: grab;
+}
+
+.instructions button.isSpinning,
+svg#pin.isSpinning {
+    cursor: not-allowed;
+}
+
+
+.instructions .gift-value {
+    margin-top: 1rem;
+    padding: 0.25rem 0.75rem;
+    color: inherit;
+    font-family: inherit;
+    margin: 10px 0;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 0 0 2px currentColor;
+    background: var(--color-bg);
+    transition: all 0.5s ease-out;
+}
+
+/*
+animation for the pin, to have it soundly move up and down alongside the spinning wheel
+the duration of the animation is customized in JS to have it run a certain number of times
+*/
+@keyframes pinWheel {
+    33% {
+        transform: translateY(-50%) rotate(-10deg);
+    }
+
+    67% {
+        transform: translateY(-50%) rotate(10deg);
+    }
+}
+
+/* on smaller viewports position the instructions in the bottom center (as they would otherwise overlap with the wheel) */
+@media (max-width: 600px) {
+    .instructions {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-end;
+        padding: 1rem;
+        transition: transform 0.5s ease-out;
+        text-align: center;
+    }
+}
