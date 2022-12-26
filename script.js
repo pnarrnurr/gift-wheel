@@ -100,12 +100,9 @@ function spinWheel() {
     timeoutID = setTimeout(() => {
         audio.playbackRate = 1;
         audio.pause()
-        source.src = "https://assets.mixkit.co/sfx/preview/mixkit-small-young-crowd-clapping-3036.mp3";
+        source.src = "https://assets.mixkit.co/sfx/preview/mixkit-audience-light-applause-354.mp3";
         audio.load();
         audio.play();
-        setTimeout(() => {
-            audio.pause()
-        }, 5000);
         heading.textContent = `${data[randomSuspect].text}`;
         heading.classList.remove('isHidden');
         pinText.style.animation = '';
