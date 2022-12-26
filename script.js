@@ -1,5 +1,10 @@
 const containerSlices = document.querySelector('g#slices');
 const pin = document.querySelector('svg#pin');
+const pinText = document.querySelector('.spin__button');
+const heading = document.querySelector('h1');
+let boxes = document.getElementsByClassName("gift-value")
+const audio = document.querySelector('audio');
+let timeoutID = 0;
 
 for (let i = 0; i < 48; i += 1) {
     const transform = `rotate(${360 / 48 * i}), translate(0 -49.5), rotate(${-360 / 48 * i})`;
@@ -7,18 +12,17 @@ for (let i = 0; i < 48; i += 1) {
     containerSlices.innerHTML += dot;
 }
 
-const heading = document.querySelector('h1');
-const spinButton = document.querySelector('button');
+for (let index = 0; index < boxes.length; index++) {
+    boxes[index].style.color = boxes[index].getAttribute("color");
+}
 
-let timeoutID = 0;
-
-let boxes = document.getElementsByClassName("gift-value")
 let data = [];
-let percent = 360 / boxes.length;
-for (const box in boxes) {
+let percent = 360 / (boxes.length * 2);
+for (let index = 0; index < boxes.length * 2; index++) {
+    let box = index % boxes.length;
     if (boxes[box].innerHTML) {
         data.push({
-            rotation: (percent * box) + percent,
+            rotation: (percent * index) + percent,
             color: boxes[box].getAttribute("color"),
             text: boxes[box].innerHTML
         })
@@ -36,8 +40,15 @@ function toFixedNotRound(number, precision = 1) {
     let res = arr[0] + ".";
     if (arr.length > 1) {
         let arr2 = arr[1].split("");
-        for (let i = 0; i < precision; i++) {
-            res += arr2[i];
+        if (arr2.length >= precision) {
+            for (let i = 0; i < precision; i++) {
+                res += arr2[i];
+            }
+        }
+        else {
+            for (let i = 0; i < arr2.length; i++) {
+                res += arr2[i];
+            }
         }
     }
     return Number(res);
@@ -57,19 +68,17 @@ for (let i = 360; i > 0; i -= percent) {
     }
 
     const path = `
-    <path d="M 50 50 L 50 3 A 47 47 ${flags} ${xCoor} ${yCoor}" fill=#${fill} />
-  `;
+        <path d="M 50 50 L 50 3 A 47 47 ${flags} ${xCoor} ${yCoor}" fill=${fill} />
+      `;
     containerSlices.innerHTML += path;
 }
 
 function spinWheel() {
     const randomInt = (min = 0, max = 16) => Math.floor(Math.random() * (max - min) + min);
-    spinButton.removeEventListener('click', spinWheel);
-    pin.removeEventListener('click', spinWheel);
+    pinText.removeEventListener('click', spinWheel);
 
     heading.classList.add('isHidden');
-    pin.classList.add('isSpinning');
-    spinButton.classList.add('isSpinning');
+    pinText.classList.add('isSpinning');
 
     const randomDuration = randomInt(4, 10);
     const randomRotate = randomInt(10, 20);
@@ -79,27 +88,31 @@ function spinWheel() {
     containerSlices.style.transition = `transform ${randomDuration}s ease-out`;
     containerSlices.style.transform = `rotate(${randomRotate * 360 - data[randomSuspect].rotation + 90 + randomInt(0, 360 / 24)}deg)`;
 
-    pin.style.animation = `pinWheel ${randomDuration / 10}s 10 ease-in-out`;
+    audio.playbackRate = randomDuration / 10;
+    audio.currentTime = 0;
+    audio.play();
+
+    pinText.style.animation = `pinWheel ${randomDuration / 10}s 10 ease-in-out`;
     document.documentElement.style.setProperty('--color-theme', `#ffffff`);
 
     timeoutID = setTimeout(() => {
-        heading.textContent = `#${data[randomSuspect].text}`;
+        audio.pause()
+        audio.currentTime = 0;
+        heading.textContent = `${data[randomSuspect].text}`;
         heading.classList.remove('isHidden');
-        pin.style.animation = '';
-        document.documentElement.style.setProperty('--color-theme', `#${data[randomSuspect].color}`);
+        pinText.style.animation = '';
+        document.documentElement.style.setProperty('--color-theme', `${data[randomSuspect].color}`);
 
-        pin.classList.remove('isSpinning');
-        spinButton.classList.remove('isSpinning');
+        pinText.classList.remove('isSpinning');
 
-        spinButton.addEventListener('click', spinWheel);
-        pin.addEventListener('click', spinWheel);
+        pinText.addEventListener('click', spinWheel);
 
         clearInterval(timeoutID);
     }, randomDuration * 1000);
 }
 
-spinButton.addEventListener('click', spinWheel);
+pinText.addEventListener('click', spinWheel);
 
-pin.addEventListener('click', spinWheel);
+
 
 
