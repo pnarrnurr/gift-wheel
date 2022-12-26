@@ -4,6 +4,7 @@ const pinText = document.querySelector('.spin__button');
 const heading = document.querySelector('h1');
 let boxes = document.getElementsByClassName("gift-value")
 const audio = document.querySelector('audio');
+const source = document.querySelector('source');
 let timeoutID = 0;
 
 for (let i = 0; i < 48; i += 1) {
@@ -81,23 +82,30 @@ function spinWheel() {
     pinText.classList.add('isSpinning');
 
     const randomDuration = randomInt(4, 10);
-    const randomRotate = randomInt(10, 20);
-    const randomSuspect = randomInt(0, data.length - 1);
+    const randomRotate = randomInt(0, 12);
+    const randomSuspect = randomInt(0, data.length);
 
     containerSlices.style.transformOrigin = '50%';
     containerSlices.style.transition = `transform ${randomDuration}s ease-out`;
     containerSlices.style.transform = `rotate(${randomRotate * 360 - data[randomSuspect].rotation + 90 + randomInt(0, 360 / 24)}deg)`;
 
+    source.src = "https://assets.mixkit.co/sfx/preview/mixkit-bike-wheel-spinning-1613.mp3";
+    audio.load();
     audio.playbackRate = randomDuration / 10;
-    audio.currentTime = 0;
     audio.play();
 
     pinText.style.animation = `pinWheel ${randomDuration / 10}s 10 ease-in-out`;
     document.documentElement.style.setProperty('--color-theme', `#ffffff`);
 
     timeoutID = setTimeout(() => {
+        audio.playbackRate = 1;
         audio.pause()
-        audio.currentTime = 0;
+        source.src = "https://assets.mixkit.co/sfx/preview/mixkit-small-young-crowd-clapping-3036.mp3";
+        audio.load();
+        audio.play();
+        setTimeout(() => {
+            audio.pause()
+        }, 5000);
         heading.textContent = `${data[randomSuspect].text}`;
         heading.classList.remove('isHidden');
         pinText.style.animation = '';
