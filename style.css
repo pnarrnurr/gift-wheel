@@ -147,7 +147,9 @@ svg#pin.isSpinning {
 }
 
 audio {
-    visibility: hidden
+    visibility: hidden;
+    width: 0;
+    height: 0;
 }
 
 @keyframes spinText {
