@@ -1,9 +1,5 @@
-/* import font(s) */
 @import url("https://fonts.googleapis.com/css?family=Rancho&effect=shadow-multiple");
 
-/* detail root variables
---color-theme cascades to most html elements, and will be later updated in JavaScript
-*/
 :root {
     --font: "Rancho", sans-serif;
     --color-bg: #000b14;
@@ -38,7 +34,6 @@ body {
     align-items: center;
 }
 
-/* heading centered atop the page */
 h1 {
     text-align: center;
     margin: 1rem 0 0;
@@ -48,27 +43,23 @@ h1 {
     top: 0;
 }
 
-/* shown/hidden through an dedicated class */
 h1.isHidden {
     opacity: 0;
     visibility: hidden;
     transform: translateY(-1rem) scale(0);
 }
 
-/* wheel positioned to the left of the page, and occupying 50% of whichever dimension is the biggest */
 svg#wheel {
     width: 100%;
     height: auto;
 }
 
-/* arrow positioned to the right of the wheel, and pointing at the very middle section */
 svg#pin {
     width: calc(50% / 25);
     height: calc(50% / 25);
     fill: var(--color-theme);
 }
 
-/* instructions displayed on the right side, in a single column layout */
 .instructions {
     min-height: 100vh;
     display: flex;
@@ -88,7 +79,6 @@ svg#pin {
     border-radius: 10px;
     box-shadow: 0 0 0 2px currentColor;
     background: var(--color-bg);
-    /* transition for a simple hover and active state */
     transition: all 0.5s ease-out;
     color: var(--color-theme);
 }
@@ -104,7 +94,6 @@ svg#pin {
     transform: scale(0.95) translateY(0.1rem);
 }
 
-/* cursor customized to grab, and not allowed when the wheel is spinning (class added in JS) */
 .instructions button,
 svg#pin {
     cursor: grab;
@@ -129,10 +118,6 @@ svg#pin.isSpinning {
     transition: all 0.5s ease-out;
 }
 
-/*
-animation for the pin, to have it soundly move up and down alongside the spinning wheel
-the duration of the animation is customized in JS to have it run a certain number of times
-*/
 @keyframes pinWheel {
     33% {
         transform: translateY(-50%) rotate(-10deg);
@@ -143,7 +128,6 @@ the duration of the animation is customized in JS to have it run a certain numbe
     }
 }
 
-/* on smaller viewports position the instructions in the bottom center (as they would otherwise overlap with the wheel) */
 @media (max-width: 600px) {
     .instructions {
         display: flex;
