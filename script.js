@@ -6,6 +6,8 @@ let boxes = document.getElementsByClassName("gift-value")
 const audio = document.querySelector('audio');
 const source = document.querySelector('source');
 let timeoutID = 0;
+const deviceWidth = document.body.offsetWidth;
+const deviceHeight = document.body.offsetHeight;
 
 for (let i = 0; i < 48; i += 1) {
     const transform = `rotate(${360 / 48 * i}), translate(0 -49.5), rotate(${-360 / 48 * i})`;
@@ -33,6 +35,34 @@ for (let index = 0; index < boxes.length * 2; index++) {
 let randomFill = '';
 for (let i = 0; i < data.length; i++) {
     randomFill = data[i].color;
+}
+
+const alphabet = [
+    "🎉",
+    "🥳",
+    "🎈",
+    "🎊",
+    "🎁"
+];
+const fontSizes = [10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
+
+for (let i = 0; i < 100; i++) {
+    let rand = Math.floor(Math.random() * alphabet.length);
+    let element = document.createElement("span");
+    element.setAttribute("id", alphabet[rand] + i);
+    element.innerHTML = alphabet[rand];
+    element.className = "element";
+    element.style.opacity = Math.random() * 0.7;
+    element.style.position = "absolute";
+    element.style.left = Math.floor(Math.random() * deviceWidth - 40) + "px";
+    element.style.top = Math.floor(Math.random() * deviceHeight - 40) + "px";
+    element.style.animationDelay =
+        Math.floor(Math.random() * (5 - 0) + 0) + "s";
+    element.style.animationDuration =
+        Math.floor(Math.random() * (10 - 1) + 1) + "s";
+    element.style.fontSize =
+        Math.floor(Math.random() * (60 - 20) + 20) + "px";
+    document.getElementById("wrapper").appendChild(element);
 }
 document.querySelector('svg circle#slice').style.fill = data;
 

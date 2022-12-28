@@ -12,11 +12,10 @@
 
     <body>
 
-        <div class="wrapper">
+        <div id="wrapper" class="wrapper">
             <h1 class="isHidden"></h1>
-
             <div class="instructions">
-                <div class="">
+                <div class="z-index-1">
                     <div class="gift-value" color="#ED6A80">50₺ SETCARD</div>
                     <div class="gift-value" color="#3DBAE8">70₺ SETCARD</div>
                     <div class="gift-value" color="#6A6AB1">100₺ STARBUCKS HEDİYE KARTI</div>
@@ -25,22 +24,22 @@
                     <div class="gift-value" color="#FDE85F">KAFA İZNİ</div>
                 </div>
             </div>
-            <div class="wheel-area">
-                <svg id="wheel" viewBox="0 0 100 100">
-                    <circle cx="50" cy="50" r="48" fill="none" stroke-width="1" stroke="currentColor"/>
-                    <circle id="slice" cx="50" cy="50" r="47"/>
-                    <g id="slices"></g>
-                </svg>
-                <div class="spin__button">
-                    <span>Spin!</span>
-                    <svg id="pin" viewBox="0 0 50 50">
-                        <path d="M 0 25 L 50 0 V 50"/>
+            <div class="wheel">
+                <div class="wheel-area">
+                    <svg id="wheel" viewBox="0 0 100 100">
+                        <circle cx="50" cy="50" r="48" fill="none" stroke-width="1" stroke="currentColor"/>
+                        <circle id="slice" cx="50" cy="50" r="47"/>
+                        <g id="slices"></g>
                     </svg>
+                    <div class="spin__button">
+                        <span>Spin!</span>
+                        <svg id="pin" viewBox="0 0 50 50">
+                            <path d="M 0 25 L 50 0 V 50"/>
+                        </svg>
+                    </div>
                 </div>
             </div>
-
         </div>
-
         <audio controls>
             <source type="audio/mp3"></source>
         </audio>

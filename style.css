@@ -19,12 +19,24 @@ body {
 }
 
 .wrapper {
-    max-width: 1290px;
+    /* max-width: 1290px; */
     margin: 0 auto;
     display: flex;
     align-items: center;
     justify-content: space-evenly;
     flex-wrap: wrap;
+    overflow: hidden;
+    height: 100vh;
+}
+
+.wheel {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    position: relative;
+    justify-content: center;
+    align-items: baseline;
+    top: calc(0% - 13%);
 }
 
 .wheel-area {
@@ -34,15 +46,10 @@ body {
     align-items: center;
     transform: rotate(-55deg);
     margin: 9px 5px 5px;
-    position: absolute;
-    top: calc(100vh - 51vw);
-    max-width: 1400px;
-}
-
-@media screen and (min-width :1400px) {
-    .wheel-area {
-        top: calc(100vh - 710px)
-    }
+    /* position: absolute;
+    max-width: 1200px; */
+    z-index: 1;
+    /* top: calc(100vh - 62%); */
 }
 
 h1 {
@@ -68,7 +75,7 @@ svg#wheel {
 
 .spin__button {
     display: flex;
-    width: calc(50% / 7);
+    width: calc(50% / 10);
     flex-flow: row-reverse;
     cursor: pointer;
 }
@@ -86,6 +93,7 @@ svg#wheel {
 
 svg#pin {
     fill: var(--color-theme);
+    width: 100%;
 }
 
 .instructions {
@@ -152,6 +160,14 @@ audio {
     height: 0;
 }
 
+.z-index-1 {
+    z-index: 1;
+}
+
+span {
+    animation: animStar linear infinite;
+}
+
 @keyframes spinText {
     0% {
         transform: rotate(90deg) scale(0.8);
@@ -176,7 +192,41 @@ audio {
     }
 }
 
-@media (max-width: 600px) {
+@keyframes animStar {
+
+    from {
+        transform: translateY(0px) rotate(720deg);
+    }
+
+    to {
+        transform: translateY(-100vh) rotate(0deg);
+    }
+}
+
+@media (max-width: 1920px) {
+    .spin__button {
+        width: calc(50% / 8);
+    }
+}
+
+@media (max-width: 1440px) {
+    .spin__button {
+        width: calc(50% / 6);
+    }
+
+    .wheel {
+        top: 0;
+    }
+}
+
+@media (max-width: 1024px) {
+    .spin__button {
+        width: calc(50% / 4);
+    }
+}
+
+
+@media (max-width: 768px) {
     .instructions {
         display: flex;
         flex-direction: column;
@@ -185,5 +235,22 @@ audio {
         padding: 1rem;
         transition: transform 0.5s ease-out;
         text-align: center;
+    }
+
+    .spin__button {
+        display: flex;
+        width: calc(50% / 2);
+        flex-flow: row-reverse;
+        cursor: pointer;
+    }
+}
+
+@media (max-width: 420px) {
+
+    .spin__button {
+        display: flex;
+        width: calc(50% / 1.5);
+        flex-flow: row-reverse;
+        cursor: pointer;
     }
 }
