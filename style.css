@@ -19,7 +19,6 @@ body {
 }
 
 .wrapper {
-    /* max-width: 1290px; */
     margin: 0 auto;
     display: flex;
     align-items: center;
@@ -44,12 +43,9 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    transform: rotate(-55deg);
+    transform: rotate(-88deg);
     margin: 9px 5px 5px;
-    /* position: absolute;
-    max-width: 1200px; */
     z-index: 1;
-    /* top: calc(100vh - 62%); */
 }
 
 h1 {

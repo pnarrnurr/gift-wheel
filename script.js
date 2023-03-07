@@ -124,7 +124,7 @@ function spinWheel() {
     audio.playbackRate = randomDuration / 10;
     audio.play();
 
-    pinText.style.animation = `pinWheel ${randomDuration / 10}s 10 ease-in-out`;
+    // pinText.style.animation = `pinWheel ${randomDuration / 10}s 10 ease-in-out`;
     document.documentElement.style.setProperty('--color-theme', `#ffffff`);
 
     timeoutID = setTimeout(() => {

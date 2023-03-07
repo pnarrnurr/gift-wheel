@@ -1,50 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
 
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="Gift Wheel">
-        <title>Gift Wheel</title>
-        <link rel="stylesheet" href="style.css">
-    </head>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Gift Wheel">
+    <title>Gift Wheel</title>
+    <link rel="stylesheet" href="style.css">
+</head>
 
-    <body>
+<body>
 
-        <div id="wrapper" class="wrapper">
-            <h1 class="isHidden"></h1>
-            <div class="instructions">
-                <div class="z-index-1">
-                    <div class="gift-value" color="#ED6A80">50₺ SETCARD</div>
-                    <div class="gift-value" color="#3DBAE8">70₺ SETCARD</div>
-                    <div class="gift-value" color="#6A6AB1">100₺ STARBUCKS HEDİYE KARTI</div>
-                    <div class="gift-value" color="#B5D568">120₺ MİGROS HEDİYE ÇEKİ</div>
-                    <div class="gift-value" color="#BD79B2">150₺ WATSONS HEDİYE ÇEKİ</div>
-                    <div class="gift-value" color="#FDE85F">KAFA İZNİ</div>
-                </div>
+    <div id="wrapper" class="wrapper">
+        <h1 class="isHidden"></h1>
+        <div class="instructions">
+            <div class="z-index-1">
+                <div class="gift-value" color="#ED6A80">100₺ MİGROS</div>
+                <div class="gift-value" color="#3DBAE8">150₺ MİGROS</div>
+                <div class="gift-value" color="#6A6AB1">200₺ MİGROS</div>
+                <div class="gift-value" color="#B5D568">250₺ MİGROS</div>
+                <div class="gift-value" color="#BD79B2">300₺ MİGROS</div>
+                <div class="gift-value" color="#FDE85F">KAFA İZNİ</div>
             </div>
-            <div class="wheel">
-                <div class="wheel-area">
-                    <svg id="wheel" viewBox="0 0 100 100">
-                        <circle cx="50" cy="50" r="48" fill="none" stroke-width="1" stroke="currentColor"/>
-                        <circle id="slice" cx="50" cy="50" r="47"/>
-                        <g id="slices"></g>
+        </div>
+        <div class="wheel">
+            <div class="wheel-area">
+                <svg id="wheel" viewBox="0 0 100 100">
+                    <circle cx="50" cy="50" r="48" fill="none" stroke-width="1" stroke="currentColor" />
+                    <circle id="slice" cx="50" cy="50" r="47" />
+                    <g id="slices"></g>
+                </svg>
+                <div class="spin__button">
+                    <span>Spin!</span>
+                    <svg id="pin" viewBox="0 0 50 50">
+                        <path d="M 0 25 L 50 0 V 50" />
                     </svg>
-                    <div class="spin__button">
-                        <span>Spin!</span>
-                        <svg id="pin" viewBox="0 0 50 50">
-                            <path d="M 0 25 L 50 0 V 50"/>
-                        </svg>
-                    </div>
                 </div>
             </div>
         </div>
-        <audio controls>
-            <source type="audio/mp3"></source>
-        </audio>
-    </body>
+    </div>
+    <audio controls>
+        <source type="audio/mp3">
+        </source>
+    </audio>
+</body>
 
-    <script src="script.js"></script>
+<script src="script.js"></script>
 
 </html>
